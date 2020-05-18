@@ -1,15 +1,10 @@
 import ozmo from '.'
-const text = `
-@image ozmo/t.png
-lorem zerdtf  ziuj,aeltizyeoizjjhfozirez
-@video ozmo/v.mp3
+import { promises as fs } from 'fs'
 
-laeyrzmkrzl
-@h1 ziurhzke
-`
-
-function main() {
-  console.log(ozmo(text))
+async function main() {
+  const text = (await fs.readFile('./try.oz')).toString()
+  const res = ozmo(text)
+  console.log(JSON.stringify(res, undefined, 2))
 }
 
 main()

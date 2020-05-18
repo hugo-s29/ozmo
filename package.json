@@ -15,6 +15,7 @@
     "clean": "prettier \"src/**/*.ts\" --write"
   },
   "devDependencies": {
+    "@types/node": "^14.0.1",
     "prettier": "^1.18.2",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.5.3"

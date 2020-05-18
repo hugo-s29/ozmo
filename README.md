@@ -20,9 +20,13 @@ console.log('it works :) !');
 ## Compile to JSON
 
 ```javascript
-import ozmo from 'ozmo'
+import ozmo from 'ozmo-compile'
 
 const text = `` // ozmo code in text variable
 const result = ozmo(text)
 console.log(JSON.stringify(result))
 ```
+
+## React integration
+
+see [Ozmo React library](https://github.com/hugo-s29/ozmo-react)

@@ -1,5 +1,6 @@
-import IOzmo from './module'
 import colors from 'kleur'
+import IOzmo from './types'
+export { IOzmo }
 
 export const ObjectTypes = ['text', 'image', 'video', 'slide', 'h1', 'h2', 'h3']
 export const BlockTypes = ['code']

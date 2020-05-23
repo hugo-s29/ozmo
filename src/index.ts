@@ -7,22 +7,24 @@ export const BlockTypes = ['code']
 
 function error(
   type: string,
+  log: boolean,
   lineIndex: number,
   line: string,
   errorType: 'block' | 'cmd' = 'cmd'
 ): IOzmo.Object {
-  console.log(
-    colors.bold().red('Error'),
-    `Type of ${
-      errorType === 'cmd' ? 'command' : 'block'
-    } ${type} not recognized at line ${lineIndex}`,
-    '\n',
-    `@${colors.red(type)}${line.substr(type.length + 1, line.length)}`
-  )
+  if (log)
+    console.log(
+      colors.bold().red('Error'),
+      `Type of ${
+        errorType === 'cmd' ? 'command' : 'block'
+      } ${type} not recognized at line ${lineIndex}`,
+      '\n',
+      `@${colors.red(type)}${line.substr(type.length + 1, line.length)}`
+    )
   return { type: 'empty', content: '' }
 }
 
-function ozmo(text: string): IOzmo.OzmObject[] {
+function ozmo(text: string, log: boolean = false): IOzmo.OzmObject[] {
   const lines = text.split(/\r\n/)
   let blockIndex: null | number = null
   let toAdd: number[][] = []
@@ -34,7 +36,7 @@ function ozmo(text: string): IOzmo.OzmObject[] {
     if (l.startsWith('@')) {
       const cmd = l.substring(1, l.length).split(' ')
       const type = cmd[0]
-      if (!ObjectTypes.includes(type)) return error(type, i, l)
+      if (!ObjectTypes.includes(type)) return error(type, log, i, l)
       const args = cmd.slice(1, cmd.length)
       if (args.length === 0) return { type: 'empty', content: '' }
 
@@ -47,7 +49,7 @@ function ozmo(text: string): IOzmo.OzmObject[] {
         return { type: 'block-end', content: '', toRemove: true }
       }
 
-      if (!BlockTypes.includes(type)) return error(type, i, l, 'block')
+      if (!BlockTypes.includes(type)) return error(type, log, i, l, 'block')
       const args = cmd.slice(1, cmd.length)
       blockIndex = i
 

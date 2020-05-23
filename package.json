@@ -1,6 +1,6 @@
 {
   "name": "ozmo-compile",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Ozmo markup language compiler",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
@@ -28,8 +28,5 @@
     "prettier": "^1.18.2",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.5.3"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   }
 }
